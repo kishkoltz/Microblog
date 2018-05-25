@@ -5,4 +5,15 @@ from app import app
 @app.route('/index')
 def index():
     user = {'username':'Chris'}
-    return render_template('index.html', title = 'Home', user = user)
+    posts = [
+        {
+            'author': {'username': 'John'},
+            'body': 'Wow, Chris is learning Flask!'
+        },
+        {
+            'author': {'username': 'Susan'},
+            'body': 'I wonder if the Han Solo movie is any good.'
+        }
+    ]
+    return render_template('index.html',
+    title = 'Home', user = user, posts=posts)
