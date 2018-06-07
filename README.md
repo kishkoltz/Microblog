@@ -7,3 +7,7 @@ cd C:\microblog\venv\Scripts
 cd C:\microblog
 set FLASK_APP=microblog.py
 flask run
+
+
+#Progress:
+Chapter 3 - Web Forms: Improving Field Validation
