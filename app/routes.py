@@ -16,7 +16,7 @@ def index():
             'body': 'I wonder if the Han Solo movie is any good.'
         }
     ]
-    return render_template('/index',
+    return render_template('index.html',
     title = 'Home', user = user, posts=posts)
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -26,4 +26,4 @@ def login():
         flash('Login requested for user {}, remember_me={}'.format(
             form.username.data, form.remember_me.data))
         return redirect('/index')
-    return render_template('/login', title='Sign In', form=form)
+    return render_template('login.html', title='Sign In', form=form)
