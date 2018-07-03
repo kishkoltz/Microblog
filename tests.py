@@ -63,7 +63,7 @@ class UserModelCase(unittest.TestCase):
 					timestamp=now + timedelta(seconds=4))
 		p3 = Post(body="post from mary", author=u3,
 					timestamp=now + timedelta(seconds=3))
-		p4 = Post(body="post from david", author=4,
+		p4 = Post(body="post from david", author=u4,
 					timestamp=now + timedelta(seconds=2))
 		db.session.add_all([p1, p2, p3, p4])
 		db.session.commit()
