@@ -66,7 +66,10 @@ def register():
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
-    posts = current_user.Post.query.filter_by(user_id=self.id)
+    posts = [
+       {'author': user, 'body': 'Test post #1'},
+       {'author': user, 'body': 'Test post #2'}
+    ]
     return render_template('user.html', user=user, posts=posts)
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
