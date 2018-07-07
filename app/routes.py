@@ -17,16 +17,7 @@ def index():
         db.session.commit()
         flash('Your post is now live!')
         return redirect(url_for('index'))
-    posts = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Wow, Chris is learning Flask!'
-        },
-        {
-            'author': {'username': 'Susan'},
-            'body': 'I wonder if the Han Solo movie is any good.'
-        }
-    ]
+    posts = current_user.followed_posts().all()
     return render_template('index.html', title = 'Home', form=form, posts=posts)
 
 @app.before_request
