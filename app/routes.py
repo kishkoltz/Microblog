@@ -145,7 +145,7 @@ def explore():
                            posts=posts.items, next_url=next_url, 
                            prev_url=prev_url)
 
-@app.route('/reset_password_request', methods=['GET', 'POST'])
+@app.route('/reset_password_request', methods=['POST'])
 def reset_password_request():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
