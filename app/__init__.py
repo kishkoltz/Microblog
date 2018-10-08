@@ -1,4 +1,4 @@
-import logging, os
+import logging, os, cli
 from flask import Flask, request
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
