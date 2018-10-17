@@ -1,4 +1,6 @@
 from yandex_translate import YandexTranslate
+from flask_babel import _
+import json
 from app import app
 
 def translate(text, source_language, dest_language):
