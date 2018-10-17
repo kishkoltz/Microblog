@@ -1,15 +1,14 @@
-import json
-import requests
-from flask_babel import _
-from app import app
+from yandex_translate import YandexTranslate
 
 def translate(text, source_language, dest_language):
+  # Yandex doesn't require requests (implied?)
+  # Yandex doesn't require wrapping key in auth
+  # Yandex returns a dict of lists, the translation is found in ['text'][0]
     if 'TRANSLATOR_KEY' not in app.config or \
-            not app.config['TRANSLATOR_KEY']:
+        not app.config['TRANSLATOR_KEY']:
         return _('Error: the translation service is not configured.')
-    r = requests.get('https://translate.yandex.net/api/v1.5/tr.json'
-                     '/translate?key={}&text={}&lang{}-{}'.format(
-                         'TRANSLATOR_KEY', text, source_language, dest_language))
-    if r.status_code != 200:
-        return _('Error: the translation service failed.')
-    return json.loads(r.content.decode('utf-8-sig'))
+    t = YandexTranslate(app.config['TRANSLATOR_KEY'])
+    r = t.translate(text, source_language + '-' + dest_language)
+    if r['code'] != 200:
+        return "Error: the translation service failed. %r" % ( r['code'] )
+    return r['text'][0]
