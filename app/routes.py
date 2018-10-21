@@ -188,6 +188,6 @@ def reset_password(token):
 @login_required
 def translate_text():
     flash('translation from routes works')
-    return translate(request.form['text'],
+    return jsonify({'text':translate(request.form['text'],
                                       request.form['source_language'],
-                                      request.form['dest_language'])
+                                      request.form['dest_language'])})
