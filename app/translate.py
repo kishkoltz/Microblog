@@ -15,3 +15,4 @@ def translate(text, source_language, dest_language):
     if r['code'] != 200:
         return "Error: the translation service failed. %r" % ( r['code'] )
     return r['text'][0]
+    print("done")
