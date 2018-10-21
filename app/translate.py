@@ -2,13 +2,11 @@ from yandex_translate import YandexTranslate
 from flask_babel import _
 import json
 from app import app
-from flask import flash
 
 def translate(text, source_language, dest_language):
   # Yandex doesn't require requests (implied?)
   # Yandex doesn't require wrapping key in auth
   # Yandex returns a dict of lists, the translation is found in ['text'][0]
-    flash('translate.py running')
     if 'TRANSLATOR_KEY' not in app.config or \
         not app.config['TRANSLATOR_KEY']:
         return _('Error: the translation service is not configured.')
