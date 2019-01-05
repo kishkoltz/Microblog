@@ -21,7 +21,12 @@ def query_index(query, page, per_page):
         results = searcher.search_page(q, page, pagelen=per_page)
         print(results[:], len(results))
     
-    
-    
-    
+'''    
+>>> from app.search import *
+>>> for post in Post.query.all():
+...     add_to_index(post)
+... 
+>>> query_index("hello", 1, 5)
+[<Hit {'id': '3'}>, <Hit {'id': '4'}>] 2   
+'''    
 #https://whoosh.readthedocs.io/en/latest/searching.html
