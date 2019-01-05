@@ -78,4 +78,4 @@ class Post(db.Model):
     language = db.Column(db.String(5))
 
     def __repr__(self):
-        return '<Post{}>'.format(self.body) 
+        return '{}'.format(self.body) 
