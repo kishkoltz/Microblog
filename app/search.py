@@ -4,13 +4,14 @@ from whoosh.fields import *
 from whoosh.qparser import QueryParser
 
 ix = index.open_dir("index")
-writer = ix.writer()
+
 
 def add_to_index(model):
     #body = __searchable__
     #payload = {}
     #for field in model.__searchable__:
     #    payload[field] = getattr(model, field)
+    writer = ix.writer()
     writer.add_document(id=str(model.id), body=model.body)
     writer.commit()
     
