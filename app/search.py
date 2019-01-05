@@ -14,5 +14,13 @@ def add_to_index(model):
     writer.add_document(id=model.id, body=payload)
     writer.commit()
     
-#def query_index():
-    #https://whoosh.readthedocs.io/en/latest/searching.html
+def query_index(query, page, per_page):
+    q = QueryParser('body', ix.schema).parse(query)
+    with ix.searcher() as searcher:
+        results = searcher.search_page(q, page, pagelen=per_page)
+        print(results[:], len(results))
+    
+    
+    
+    
+#https://whoosh.readthedocs.io/en/latest/searching.html
