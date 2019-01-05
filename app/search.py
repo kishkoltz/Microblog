@@ -11,7 +11,7 @@ def add_to_index(model):
     payload = {}
     for field in model.__searchable__:
         payload[field] = getattr(model, field)
-    writer.add_document(id=model.id, body=payload)
+    writer.add_document(id=model.id, body=str(payload))
     writer.commit()
     
 def query_index(query, page, per_page):
