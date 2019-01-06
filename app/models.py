@@ -19,6 +19,33 @@ class SearchableMixin(object):
             when.append((ids[i], i))
         return cls.query.filter(cls.id.in_(ids)).order_by(
             db.case(when, value=cls.id)), total
+    
+    @classmethod
+    def before_commit(cls, session):
+        session._changes = {
+            'add' : list(session.new)
+            'update' : list(session.dirty)
+            'delete' : list(session.delete)
+        }
+    
+    @classmethod
+    def after_commit(cls, session):
+        for obj in session._changes['add']:
+            add_to_index(obj)
+        for obj in session._changes['update']:
+            if isinstance(obj, SearchableMixin):
+                add_to_index(obj)
+        #for obj in session._changes['delete']:
+            
+        session._changes = None
+        
+    @classmethod
+    def reindex(cls):
+        for obj in cls.query:
+            add_to_index(obj)
+            
+db.event.listen(db.session, 'before_commit', SearchableMixin.before_commit)
+db.event.listen(db.session, 'after_commit', SearchableMixin.after_commit)
 
 followers = db.Table('followers',
                      db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
