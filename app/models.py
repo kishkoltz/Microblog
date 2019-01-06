@@ -6,6 +6,7 @@ from flask import current_app
 from flask_login import UserMixin
 from hashlib import md5
 import jwt
+'''
 from app.search import *
 
 class SearchableMixin(object):
@@ -19,7 +20,7 @@ class SearchableMixin(object):
             when.append((ids[i], i))
         return cls.query.filter(cls.id.in_(ids)),order_by(
             db.case(when, value=cls.id)), total
-
+'''
 followers = db.Table('followers',
                      db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
                      db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
