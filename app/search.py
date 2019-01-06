@@ -22,8 +22,9 @@ def query_index(query, page, per_page):
         
         #ids = [int(hit['_id']) for hit in search['hits']['hits']]
     #return ids, search['hits']['total']
-        
-        print(results, len(results))
+        for result in results[:]:
+            print(result['id'])
+        #print(results[:], len(results))
     
 '''    
 >>> from app.search import *
