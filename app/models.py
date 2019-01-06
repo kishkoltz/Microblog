@@ -39,7 +39,7 @@ class User(UserMixin, db.Model):
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     
     def __repr__(self):
-        return '<user {}>'.format(self.username)
+        return '<User {}>'.format(self.username)
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
     def check_password(self, password):
@@ -91,4 +91,4 @@ class Post(SearchableMixin, db.Model):
     language = db.Column(db.String(5))
 
     def __repr__(self):
-        return '{}'.format(self.body) 
+        return '<Post {}>'.format(self.body) 
