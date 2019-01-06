@@ -19,7 +19,11 @@ def query_index(query, page, per_page):
     q = QueryParser('body', ix.schema).parse(query)
     with ix.searcher() as searcher:
         results = searcher.search_page(q, page, pagelen=per_page)
-        print(results[:], len(results))
+        
+        #ids = [int(hit['_id']) for hit in search['hits']['hits']]
+    #return ids, search['hits']['total']
+        
+        print(results[:]['id'], len(results))
     
 '''    
 >>> from app.search import *
