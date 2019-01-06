@@ -6,7 +6,7 @@ from flask import current_app
 from flask_login import UserMixin
 from hashlib import md5
 import jwt
-from app.search import query_index
+from app.search import query_index, add_to_index
 
 class SearchableMixin(object):
     @classmethod
