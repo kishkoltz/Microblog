@@ -10,7 +10,7 @@ from app.search import *
 
 class SearchableMixin(object):
     @classmethod
-    def search(cls, expression, page, per page):
+    def search(cls, expression, page, per_page):
         ids, total = query_index(expression, page, per_page)
         if total == 0:
             return cls.query.filter_by(id=0), 0
