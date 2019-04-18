@@ -3,3 +3,5 @@ Building a Microblog along with Miguel's tutorial: https://blog.miguelgrinberg.c
 
 #Progress:
 Chapter 15
+
+pip install -r requirements.txt --upgrade
